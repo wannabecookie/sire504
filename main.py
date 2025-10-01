@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from SeqMan import SeqMan
-from SeqPattern import SeqPattern
-from SeqCal import SeqCal
+from bioseq.seqMan import dnaconvert
+from bioseq.pattern import SeqPattern
+from bioseq.calculation import SeqCal
 import argparse
 
 def argparserLocal():
@@ -41,9 +41,9 @@ def main():
         seq = args.seq.upper()
         
     if getattr(args, 'revcomp', False) is True:
-        seq = SeqMan.reverseComplementSeq(seq)
+        seq = dnaconvert.reverseComplementSeq(seq)
     # if getattr(args, 'revcomp') is False:
-    #     seq = SeqMan.reverseComplementSeq(seq)
+    #     seq = seqMan.reverseComplementSeq(seq)
     # Input
     # seq = 'ATGGGccGTAGAATTCTTGCaaGCCCGT'
 
@@ -70,12 +70,12 @@ def main():
     elif args.command == 'transcription':
         if args.seq == None:
             exit(parser.parse_args(['transcription','-h'])) 
-        print("Input",args.seq,"\nTranscription =", SeqMan.dna2rna(seq))
+        print("Input",args.seq,"\nTranscription =", dnaconvert.dna2rna(seq))
         
     elif args.command == 'translation':
         if args.seq == None:
             exit(parser.parse_args(['translation','-h'])) 
-        print("Input",args.seq,"\nTranslation =", SeqMan.dna2protein(seq))
+        print("Input",args.seq,"\nTranslation =", dnaconvert.dna2protein(seq))
     
         
         
